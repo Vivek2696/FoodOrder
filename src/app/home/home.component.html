@@ -1,0 +1,61 @@
+<div class="container mx-auto w-50 mt-5 search-bar">
+    <div class="input-group mb-3 input-field">
+      <div class="input-group-prepend">
+        <span class="input-group-text">
+          <mat-icon>search</mat-icon>
+        </span>
+      </div>
+      <input  type="text" 
+              class="form-control" 
+              [ngModel]="this.filterString"  
+              (ngModelChange)="this.filterBy($event)"
+              placeholder="Search Item..."/>
+    </div>
+</div>
+<div class="container-fluid mx-auto mt-3 food-items-box">
+    <div class="d-flex flex-wrap justify-content-center">
+        <div *ngFor="let item of foodItems" class="card mx-2 my-3 food-item">
+            <img class="food-item-image" [src]="item.image_url" alt="Food Image"/>
+            <div class="card-body">
+              <h2>{{item.name}}</h2>
+              <p>{{item.restaurent_name}} Restaurant | Rating {{item.rating | number}} | {{item.cost | currency: 'INR'}}</p>
+            </div>
+            <div class="card-body">
+              <button class="btn btn-outline-primary add-to-cart-button"
+                      data-toggle="modal"
+                      data-target="#add-to-cart-modal"
+                      (click)="this.addItemToDialogBox(item)">Add To Cart</button>
+              <button class="btn btn-outline-warning buy-order-button">Buy/Order</button>
+            </div>
+        </div>
+        <div *ngIf="foodItems.length == 0 && !this.isLoading">
+          <div class="alert alert-light" role="alert">
+            <h2>No Items Found!</h2>
+          </div>
+        </div>
+    </div>
+</div>
+
+<!-- The Add to cart Modal
+<div class="modal fade" id="add-to-cart-modal">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h3 class="modal-title">Are you sure you want to add this item to cart?</h3>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <h4>Add item to cart?</h4>
+        <div class="border border-dark">{{this.dialogBoxFoodItem}}</div>
+        <div>Click on add to cart to proceed further</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="this.removeItemFromDialogBox()" >Close</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal" (click)="this.addItemToCart()">Add to Cart</button>
+      </div>
+
+    </div>
+  </div>
+</div> -->

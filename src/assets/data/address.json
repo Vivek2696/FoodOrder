@@ -1,0 +1,16 @@
+{
+    "address": [
+        {
+            "id": 1,
+            "userId": 1, 
+            "name": "home",
+            "address": "123 Red Spring Way, Louisville KY-40314"
+        },
+        {
+            "id": 2,
+            "userId": 1, 
+            "name": "work",
+            "address": "123 Main St, Louisville KY-40221"
+        }
+    ]
+}

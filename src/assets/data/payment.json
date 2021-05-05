@@ -1,0 +1,13 @@
+{
+    "payments":[
+        {
+            "id": 1,
+            "userId": 1,
+            "cardType": "Credit",
+            "cardVendor": "AMEX",
+            "cardNumber": "1234567890123456",
+            "securityCode": "123",
+            "expirationDate": "05-2024"
+        }
+    ]
+}
