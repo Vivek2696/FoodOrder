@@ -1,9 +1,23 @@
 <div class="container mt-3">
-    <div class="card w-100">
-        <div class="card-body">
-            <h3>Order Details</h3>
-            <h4>Your Order Placed Successfully</h4>
-            <h1>Status:<br></h1>
-        </div>
+    <div class="container">
+        <button type="button" class="btn btn-secondary" [routerLink]="['/home']">Home</button>
     </div>
+    <div *ngIf="this.isLoading; else orderCards" class="d-flex align-items-center">
+        <strong>Loading...</strong>
+        <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+    </div>
+    <ng-template #orderCards>
+        <div *ngFor="let order of this.orders" class="card w-100 mt-3">
+            <div class="card-body">
+                <h3>Order Details</h3>
+                <h4>Your Order Placed Successfully</h4>
+                <h1>Status:<br>{{order.status}}</h1>
+                <br>
+                <h4>Remaining Time: {{order.remainingTime}}</h4>
+                <h4>Your food is being cooked sit back  and relax while our partner deliver hot and yummy food at your doorstep.</h4>
+                <h3>Order Id: {{order.id}}</h3>
+                <button type="button" class="btn btn-outline-danger">Cancel Order</button>
+            </div>
+        </div>
+    </ng-template>
 </div>

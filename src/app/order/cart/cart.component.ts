@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CartItem } from '../../Model/CartItem';
 import { OrderService } from '../../services/order.service';
+import { Order } from '../../Model/Order';
+import { UserService } from '../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -13,7 +16,9 @@ export class CartComponent implements OnInit {
   cartTotal: number = 0;
 
   constructor(
-    private _orderService: OrderService
+    private _orderService: OrderService,
+    private _userService: UserService,
+    private _router: Router
   ) { }
 
   ngOnInit(): void {
@@ -21,6 +26,22 @@ export class CartComponent implements OnInit {
     this.cartItems.forEach(element => {
       this.cartTotal += element.cost;
     });
+  }
+
+  placeOrder(){
+    let id = this._userService.getCurrentUser()?.id;
+    if(id != undefined){
+      let newOrder: Order = {
+        id: 0,
+        status: 'Placed',
+        remainingTime: 25,
+        userId:id,
+        orderTotal: this.cartTotal
+      } 
+      this._router.navigateByUrl('/orders', {state: newOrder});
+    } else{
+      console.log('error occurred in placing order');
+    }
   }
 
 }

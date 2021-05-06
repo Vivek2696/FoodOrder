@@ -1,7 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CartItem } from '../Model/CartItem';
 import { FoodItem } from '../Model/FoodItem';
 import { CartCommunicationService } from './cart-communication.service';
+import { UserService } from './user.service';
+import { AppSettings } from '../constants/AppSettings';
+import { Order } from '../Model/Order';
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +13,15 @@ import { CartCommunicationService } from './cart-communication.service';
 export class OrderService {
 
   cartItems: CartItem[] = []
+  private baseUrl: string;
 
   constructor(
-    private _cartCommunication: CartCommunicationService
-  ) {  }
+    private _http: HttpClient,
+    private _cartCommunication: CartCommunicationService,
+    private _userService: UserService
+  ) { 
+    this.baseUrl = AppSettings.API_ENDPOINT;
+  }
 
   addItemToCart(item: FoodItem){
 
@@ -42,8 +51,16 @@ export class OrderService {
     return this.cartItems;
   }
 
-  getAllOrderByUser(userId: string){
-    
+  getAllOrderByUser(){
+    let userId = this._userService.getCurrentUser()?.id;
+    let orderUrl = this.baseUrl+'/orders?userId='+userId;
+    return this._http.get<Order[]>(orderUrl);
+  }
+
+  addNewOrder(order: Order){
+    let orderUrl = this.baseUrl+'/orders';
+    order.id = 0;
+    return this._http.post(orderUrl, order);
   }
 
 }

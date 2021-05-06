@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Order } from '../../Model/Order';
 import { OrderService } from '../../services/order.service';
-import { HomeService } from '../../services/home.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-order',
@@ -11,13 +11,45 @@ import { HomeService } from '../../services/home.service';
 export class OrderComponent implements OnInit {
 
   orders: Order[] = [];
+  isLoading: boolean;
+  parameter: any;
 
   constructor(
-    private _orderService: OrderService
-  ) { }
+    private _orderService: OrderService,
+    private _router: Router
+  ) { 
+    this.isLoading = true; 
+    this.parameter = this._router.getCurrentNavigation()?.extras.state;
+    console.log(this.parameter);
+    if(this.parameter != null || this.parameter != undefined){
+      let orderData: Order = {
+        id: 0,
+        status: this.parameter.status,
+        remainingTime: this.parameter.remainingTime,
+        userId: this.parameter.userId,
+        orderTotal: this.parameter.cartTotal
+      }
+      this.addNewOrder(orderData);
+    }
+  }
 
   ngOnInit(): void {
-    //this._orderService.getAllOrderByUser();
+  }
+
+  addNewOrder(orderDate: Order){
+      this._orderService.addNewOrder(orderDate).subscribe(res => {
+        //this.getAllOrders();
+      });
+  }
+
+  getAllOrders(){
+    this._orderService.getAllOrderByUser().subscribe(res => {
+      this.orders = res;
+      this.isLoading = false;
+    },
+    (error)=>{
+      console.log(error);
+    });
   }
 
 }

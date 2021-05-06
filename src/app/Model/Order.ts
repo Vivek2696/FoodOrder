@@ -1,7 +1,7 @@
-import { ORDER_STATUS } from './Enums/OrderStatus';
 export interface Order{
     id: number,
-    status: ORDER_STATUS,
-    userId: number,
+    status: string,
+    remainingTime: number,
+    userId: string,
     orderTotal: number 
 }

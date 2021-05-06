@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../Model/User';
 import { Subject, Observable } from 'rxjs';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class AuthService {
   private baseUrl: string;
 
   constructor(
-    private _http: HttpClient
+    private _http: HttpClient,
+    private _userService: UserService
   ) { 
     this.isLoggedIn = false;
     this.baseUrl = 'http://localhost:3000';
@@ -44,9 +46,11 @@ export class AuthService {
         } else{
           loggedInSource.next(false);
         }
-      } else{
-        loggedInSource.next(false);
       }
+    },
+    (error) => {
+      console.log(error);
+      loggedInSource.next(false);
     });
     return loggedInSource.asObservable();
   }
@@ -70,6 +74,7 @@ export class AuthService {
     };
     console.log('user found!');
     sessionStorage.setItem('user', JSON.stringify(this.user)); 
+    this._userService.setUserForApp(this.user);
   }
 
   //temp method to set bypass the auth guard if the user logged in the from browser through session
@@ -77,6 +82,7 @@ export class AuthService {
     console.log('loggedIn by session storage')
     this.isLoggedIn = true;
     this.user = user;
+    this._userService.setUserForApp(this.user);
   }
 
   getLoggedInUser(): string{

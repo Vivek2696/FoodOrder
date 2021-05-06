@@ -1,3 +1,0 @@
-export enum ORDER_STATUS{
-    PLACED, PICKED_UP, DELIVERED
-}

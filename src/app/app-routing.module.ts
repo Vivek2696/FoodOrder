@@ -11,6 +11,7 @@ import { CardDetailsComponent } from './user/card-details/card-details.component
 import { AddressDetailsComponent } from './user/address-details/address-details.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { CartComponent } from './order/cart/cart.component';
+import { OrderComponent } from './order/order/order.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: 'cart',
     component: CartComponent
+  },
+  {
+    path: 'orders',
+    component: OrderComponent
   },
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: '**', component: ErrorComponent}
