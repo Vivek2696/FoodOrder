@@ -9,7 +9,7 @@
               class="form-control" 
               [ngModel]="this.filterString"  
               (ngModelChange)="this.filterBy($event)"
-              placeholder="Search Item..."/>
+              placeholder="Search Item By Any Criteria..."/>
     </div>
 </div>
 <div class="container-fluid mx-auto mt-3 food-items-box">
@@ -38,27 +38,3 @@
         </div>
     </div>
 </div>
-
-<!-- The Add to cart Modal
-<div class="modal fade" id="add-to-cart-modal">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <h3 class="modal-title">Are you sure you want to add this item to cart?</h3>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-
-      <div class="modal-body">
-        <h4>Add item to cart?</h4>
-        <div class="border border-dark">{{this.dialogBoxFoodItem}}</div>
-        <div>Click on add to cart to proceed further</div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="this.removeItemFromDialogBox()" >Close</button>
-        <button type="button" class="btn btn-success" data-dismiss="modal" (click)="this.addItemToCart()">Add to Cart</button>
-      </div>
-
-    </div>
-  </div>
-</div> -->
