@@ -22,10 +22,9 @@
             </div>
             <div class="card-body">
               <button class="btn btn-outline-primary add-to-cart-button"
-                      data-toggle="modal"
-                      data-target="#add-to-cart-modal"
                       (click)="this.addItemToDialogBox(item)">Add To Cart</button>
-              <button class="btn btn-outline-warning buy-order-button">Buy/Order</button>
+              <button class="btn btn-outline-warning buy-order-button"
+                      (click)="this.buyThisItem(item)">Buy/Order</button>
             </div>
         </div>
         <div *ngIf="foodItems.length == 0 && !this.isLoading">

@@ -15,4 +15,8 @@ export class LoginCommunicationService {
     this.userLoggedIn.emit(true);
   }
 
+  raiseLogoutEvent(): void {
+    this.userLoggedIn.emit(false);
+  }
+
 }

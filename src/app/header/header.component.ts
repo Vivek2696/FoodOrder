@@ -29,6 +29,9 @@ export class HeaderComponent implements OnInit {
       if(isLoggedIn){
         this.username = this._authService.getLoggedInUser();
         this.isLoggedIn = true;
+      } 
+      else{
+        this.isLoggedIn = false;
       }
     });
     this._cartCommunication.newItemArrival.subscribe( newItem => {
@@ -36,6 +39,15 @@ export class HeaderComponent implements OnInit {
         this.itemsInCart++;
       }
     });
+    this._cartCommunication.emptyCart.subscribe( res => {
+      if(res == true){
+        this.itemsInCart = 0;
+      }
+    });
+  }
+
+  logout(){
+    this._authService.logout();
   }
 
 }

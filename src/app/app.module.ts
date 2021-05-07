@@ -21,6 +21,9 @@ import { CartComponent } from './order/cart/cart.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AddToCartDialogComponent } from './order/add-to-cart-dialog/add-to-cart-dialog.component';
 import { OrderComponent } from './order/order/order.component';
+import { CountdownModule } from 'ngx-countdown';
+import { AddressFormComponent } from './user/address-form/address-form.component';
+import { CardFormComponent } from './user/card-form/card-form.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,9 @@ import { OrderComponent } from './order/order/order.component';
     ProfileComponent,
     CartComponent,
     AddToCartDialogComponent,
-    OrderComponent
+    OrderComponent,
+    AddressFormComponent,
+    CardFormComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +52,8 @@ import { OrderComponent } from './order/order/order.component';
     ReactiveFormsModule,
     MatIconModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    CountdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]

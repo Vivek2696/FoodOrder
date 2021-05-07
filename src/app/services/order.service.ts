@@ -6,6 +6,7 @@ import { CartCommunicationService } from './cart-communication.service';
 import { UserService } from './user.service';
 import { AppSettings } from '../constants/AppSettings';
 import { Order } from '../Model/Order';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -51,9 +52,20 @@ export class OrderService {
     return this.cartItems;
   }
 
+  emptyCartItems(){
+    this.cartItems = [];
+  }
+
   getAllOrderByUser(){
     let userId = this._userService.getCurrentUser()?.id;
-    let orderUrl = this.baseUrl+'/orders?userId='+userId;
+
+    if(userId == undefined || userId ==null){
+      let user = sessionStorage.getItem('user');
+      if(user!=null){
+        userId = JSON.parse(user).id;
+      }
+    }
+    let orderUrl = this.baseUrl+'/orders';
     return this._http.get<Order[]>(orderUrl);
   }
 
@@ -61,6 +73,15 @@ export class OrderService {
     let orderUrl = this.baseUrl+'/orders';
     order.id = 0;
     return this._http.post(orderUrl, order);
+  }
+
+  updateAllOrders(orders: Order[]){
+    orders.forEach(order => {
+      let url = this.baseUrl+'/orders/'+order.id;
+      order.remainingTime = 0;
+      order.status = 'Delivered';
+      this._http.put(url, order);
+    })
   }
 
 }

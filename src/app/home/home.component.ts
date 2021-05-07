@@ -5,6 +5,9 @@ import { HomeService } from '../services/home.service';
 import { OrderService } from '../services/order.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddToCartDialogComponent } from '../order/add-to-cart-dialog/add-to-cart-dialog.component';
+import { UserService } from '../services/user.service';
+import { Order } from '../Model/Order';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -24,7 +27,9 @@ export class HomeComponent implements OnInit {
     private _loginCommunication: LoginCommunicationService,
     private _homeService: HomeService,
     private _orderService: OrderService,
-    private dialog: MatDialog
+    private _userService: UserService,
+    private dialog: MatDialog,
+    private _router: Router
   ) { }
 
   ngOnInit(): void {
@@ -79,17 +84,24 @@ export class HomeComponent implements OnInit {
     this.itemInDialogBox = undefined;
   }
 
-  addItemToCart(){
+  buyThisItem(item: any){
+    let id = this._userService.getCurrentUser()?.id;
+    if(id != undefined){
+      let newOrder: Order = {
+        id: this.generateNewOrderId(),
+        status: 'Placed',
+        remainingTime: 25,
+        userId:id,
+        orderTotal: item.cost
+      }
+      this._router.navigate(['/orders',], {state: newOrder});
+    } else{
+      console.log('error occurred in placing order');
+    }
+  }
 
-    
-
-    // if(this.itemInDialogBox != undefined){
-    //   //add this item to cart using cart service
-    //   this._orderService.addItemToCart(this.itemInDialogBox);
-    // }
-    // else{
-    //   alert('Error occurred in adding to cart!');
-    // }
+  generateNewOrderId() {
+    return Math.floor(Math.random() * (1000000 - 100000 + 1) + 100000);
   }
 
 }

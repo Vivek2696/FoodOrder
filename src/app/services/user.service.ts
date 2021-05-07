@@ -34,7 +34,20 @@ export class UserService {
   }
 
   getCurrentUser(){
-    return this.loggedInUser;
+    if(this.loggedInUser != undefined || this.loggedInUser != null){
+      return this.loggedInUser;
+    }
+    else {
+      let currentUser = sessionStorage.getItem('user');
+      if(currentUser!= null){
+        return JSON.parse(currentUser);
+      }
+    }
+  }
+
+  findUserById(email: string){
+    let url = this.baseUrl+'/users/'+email;
+    return this._http.get<UserProfile>(url);
   }
 
 }

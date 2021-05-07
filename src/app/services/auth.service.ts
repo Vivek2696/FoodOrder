@@ -4,6 +4,9 @@ import { Injectable } from '@angular/core';
 import { User } from '../Model/User';
 import { Subject, Observable } from 'rxjs';
 import { UserService } from './user.service';
+import { LoginCommunicationService } from './login-communication.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +19,10 @@ export class AuthService {
 
   constructor(
     private _http: HttpClient,
-    private _userService: UserService
+    private _userService: UserService,
+    private _loginCommunication: LoginCommunicationService,
+    private snackbar: MatSnackBar,
+    private _router: Router
   ) { 
     this.isLoggedIn = false;
     this.baseUrl = 'http://localhost:3000';
@@ -32,7 +38,19 @@ export class AuthService {
   }
 
   isAuthenticated(){
-    return this.isLoggedIn;
+    let isUserLoggedIn =  this.isLoggedIn;
+    if(!isUserLoggedIn){
+      let user = sessionStorage.getItem('user');
+      if(user != undefined){
+        let userObj = JSON.parse(user);
+        isUserLoggedIn = true;
+        this.isLoggedIn = true;
+        this.user = userObj;
+        this._userService.setUserForApp(this.user);
+        this._loginCommunication.raiseLoginEvent();
+      }
+    }
+    return isUserLoggedIn;
   }
 
   login(user: User): Observable<boolean>{
@@ -83,6 +101,7 @@ export class AuthService {
     this.isLoggedIn = true;
     this.user = user;
     this._userService.setUserForApp(this.user);
+    this._loginCommunication.raiseLoginEvent();
   }
 
   getLoggedInUser(): string{
@@ -95,7 +114,13 @@ export class AuthService {
   }
 
   logout(){
-    this.isLoggedIn = false;    
+    this.isLoggedIn = false;
+    sessionStorage.removeItem('user');
+    this.snackbar.open('Logged out successfully', '', {
+      duration: 3000
+    });
+    this._loginCommunication.raiseLogoutEvent();
+    this._router.navigate(['/login']);
   }
   
 }

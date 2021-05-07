@@ -12,6 +12,18 @@
         "Dosa"
       ],
       "imageUrl": "/assets/images/profile_pic.png"
+    },
+    {
+      "id": "edureka@123.com",
+      "name": "Edureka",
+      "password": "123456",
+      "phone": "000-000-0000",
+      "profession": "User",
+      "interests": [
+        "Pizza",
+        "Burger"
+      ],
+      "imageUrl": "/assets/images/profile_pic.png"
     }
   ],
   "foods": [
@@ -100,15 +112,27 @@
   "address": [
     {
       "id": 1,
-      "userId": "admin@123.com",
       "name": "home",
-      "address": "123 Red Spring Way, Louisville KY-40314"
+      "address": "123 Red Mile Louisville KY-40212",
+      "userId": "admin@123.com"
     },
     {
       "id": 2,
-      "userId": "admin@123.com",
       "name": "work",
-      "address": "123 Main St, Louisville KY-40221"
+      "address": "123 Main St Louisville KY-12345",
+      "userId": "admin@123.com"
+    },
+    {
+      "id": 3,
+      "name": "Home",
+      "address": "123 Main St Louisville KY-4000",
+      "userId": "edureka@123.com"
+    },
+    {
+      "id": 4,
+      "userId": "edureka@123.com",
+      "name": "Work",
+      "address": "123 Broad Way Louisville KY-20345"
     }
   ],
   "payments": [
@@ -120,6 +144,15 @@
       "cardNumber": "1234567890123456",
       "securityCode": "123",
       "expirationDate": "05-2024"
+    },
+    {
+      "id": 2,
+      "userId": "edureka@123.com",
+      "cardType": "Credit",
+      "cardVendor": "Mastercard",
+      "cardNumber": "3847162098385647",
+      "securityCode": 493,
+      "expirationDate": "2022-04-05"
     }
   ],
   "orders": [
@@ -132,33 +165,164 @@
     },
     {
       "id": 1001,
-      "status": "Placed",
-      "remainingTime": 25,
-      "userId": "admin@123.com"
+      "status": "Delivered",
+      "remainingTime": 0,
+      "userId": "admin@123.com",
+      "orderTotal": 400
     },
     {
       "id": 1002,
-      "status": "Placed",
-      "remainingTime": 25,
-      "userId": "admin@123.com"
+      "status": "Delivered",
+      "remainingTime": 0,
+      "userId": "admin@123.com",
+      "orderTotal": 750
     },
     {
       "id": 1003,
-      "status": "Placed",
-      "remainingTime": 25,
-      "userId": "admin@123.com"
+      "status": "Delivered",
+      "remainingTime": 0,
+      "userId": "admin@123.com",
+      "orderTotal": 200
     },
     {
       "id": 1004,
-      "status": "Placed",
-      "remainingTime": 25,
-      "userId": "admin@123.com"
+      "status": "Delivered",
+      "remainingTime": 0,
+      "userId": "admin@123.com",
+      "orderTotal": 400
     },
     {
       "id": 1005,
-      "status": "Placed",
-      "remainingTime": 25,
-      "userId": "admin@123.com"
+      "status": "Delivered",
+      "remainingTime": -1,
+      "userId": "admin@123.com",
+      "orderTotal": 400
+    },
+    {
+      "id": 1006,
+      "status": "Delivered",
+      "remainingTime": 0,
+      "userId": "admin@123.com",
+      "orderTotal": 50
+    },
+    {
+      "id": 1007,
+      "status": "Delivered",
+      "remainingTime": 0,
+      "userId": "admin@123.com",
+      "orderTotal": 400
+    },
+    {
+      "id": 1008,
+      "status": "Delivered",
+      "remainingTime": 0,
+      "userId": "admin@123.com",
+      "orderTotal": 400
+    },
+    {
+      "id": 1009,
+      "status": "Delivered",
+      "remainingTime": -1,
+      "userId": "admin@123.com",
+      "orderTotal": 400
+    },
+    {
+      "id": 1010,
+      "status": "Delivered",
+      "remainingTime": 0,
+      "userId": "admin@123.com",
+      "orderTotal": 400
+    },
+    {
+      "id": 1011,
+      "status": "Delivered",
+      "remainingTime": -1,
+      "userId": "admin@123.com",
+      "orderTotal": 400
+    },
+    {
+      "id": 1012,
+      "status": "Delivered",
+      "remainingTime": 0,
+      "userId": "admin@123.com",
+      "orderTotal": 400
+    },
+    {
+      "id": 1013,
+      "status": "Delivered",
+      "remainingTime": -1,
+      "userId": "admin@123.com",
+      "orderTotal": 400
+    },
+    {
+      "id": 1014,
+      "status": "Delivered",
+      "remainingTime": 0,
+      "userId": "admin@123.com",
+      "orderTotal": 0
+    },
+    {
+      "id": 1015,
+      "status": "Delivered",
+      "remainingTime": 0,
+      "userId": "admin@123.com",
+      "orderTotal": 750
+    },
+    {
+      "id": 1016,
+      "status": "Delivered",
+      "remainingTime": -1,
+      "userId": "admin@123.com",
+      "orderTotal": 750
+    },
+    {
+      "id": 1017,
+      "status": "Delivered",
+      "remainingTime": 0,
+      "userId": "admin@123.com",
+      "orderTotal": 50
+    },
+    {
+      "id": 1018,
+      "status": "Delivered",
+      "remainingTime": -1,
+      "userId": "admin@123.com",
+      "orderTotal": 50
+    },
+    {
+      "id": 1019,
+      "status": "Delivered",
+      "remainingTime": 0,
+      "userId": "admin@123.com",
+      "orderTotal": 200
+    },
+    {
+      "id": 1020,
+      "status": "Delivered",
+      "remainingTime": 0,
+      "userId": "admin@123.com",
+      "orderTotal": 350
+    },
+    {
+      "id": 1021,
+      "status": "Delivered",
+      "remainingTime": -1,
+      "userId": "admin@123.com",
+      "orderTotal": 350
+    },
+    {
+      "id": 1022,
+      "status": "Delivered",
+      "remainingTime": 0,
+      "userId": "edureka@123.com",
+      "orderTotal": 800
+    },
+    {
+      "id": 1023,
+      "status": "Delivered",
+      "remainingTime": 0,
+      "userId": "edureka@123.com",
+      "orderTotal": 50
     }
   ]
 }
