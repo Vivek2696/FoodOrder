@@ -51,8 +51,8 @@ export class CardFormComponent implements OnInit {
     this.paymentFormGroup = this._fb.group({
       cardType: [this.cardType , [Validators.required]],
       cardVendor: [this.cardVendor , [Validators.required]],
-      cardNumber: [this.cardNumber , [Validators.required]],
-      securityCode: [this.securityCode , [Validators.required]],
+      cardNumber: [this.cardNumber , [Validators.required, Validators.minLength(16), Validators.maxLength(16), Validators.pattern('[0-9]*')]],
+      securityCode: [this.securityCode , [Validators.required, Validators.minLength(3), Validators.maxLength(4), Validators.pattern('[0-9]*')]],
       expirationDate: [this.expirationDate , [Validators.required]]
     });
   }

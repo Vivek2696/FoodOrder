@@ -81,28 +81,30 @@
                         id="card-number" 
                         class="form-control" 
                         type="text" 
-                        placeholder="xxxx-xxxx-xxxx-xxxx" 
+                        placeholder="xxxxxxxxxxxxxxxx" 
                         required 
                         formControlName="cardNumber"
                         [ngClass]= "{'is-invalid' : submitted && f.cardNumber.errors}">
                     <div class="invalid-feedback" *ngIf="submitted && f.cardNumber.errors?.required">Card number is required</div>
+                    <div class="invalid-feedback" *ngIf="submitted && (f.cardNumber.errors?.minlength || f.cardNumber.errors?.maxlength || f.cardNumber.errors?.pattern)">Card number should be 16 digits</div>
                 </div>
                 <!--security code-->
                 <div class="form-group row form-field">
-                    <label for="securityCode">Card Number:</label>
+                    <label for="securityCode">Security Code:</label>
                     <input 
                         id="securityCode" 
                         class="form-control" 
-                        type="number" 
+                        type="text" 
                         placeholder="000" 
                         required 
                         formControlName="securityCode"
                         [ngClass]= "{'is-invalid' : submitted && f.securityCode.errors}">
                     <div class="invalid-feedback" *ngIf="submitted && f.securityCode.errors?.required">Security code is required</div>
+                    <div class="invalid-feedback" *ngIf="submitted && (f.securityCode.errors?.minlength || f.securityCode.errors?.maxlength || f.securityCode.errors?.pattern)">Security code should be 3 to 4 digits</div>
                 </div>
                 <!--exp date-->
                 <div class="form-group row form-field">
-                    <label for="expirationDate">Card Number:</label>
+                    <label for="expirationDate">Expiration Date:</label>
                     <input 
                         id="expirationDate" 
                         class="form-control" 

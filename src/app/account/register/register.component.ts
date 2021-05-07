@@ -4,6 +4,8 @@ import { UserService } from 'src/app/services/user.service';
 import { ConfirmPasswordValidator } from 'src/app/_helpers/match-password.validator';
 import { User } from '../../Model/User';
 import { UserProfile } from '../../Model/UserProfile';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +19,9 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private _userService: UserService
+    private _userService: UserService,
+    private snackBar: MatSnackBar,
+    private _router: Router
   ) { 
     this.submitted = false;
     this.registerFormGroup = fb.group({
@@ -54,6 +58,10 @@ export class RegisterComponent implements OnInit {
     //register user using service
     this._userService.addNewUser(user).subscribe(res => {
       console.log(res);
+      this.snackBar.open('Registered Successfully', '', {
+        duration: 3000
+      });
+      this._router.navigate(['/login']);
     },
     (error) => {
       console.log(error);

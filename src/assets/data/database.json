@@ -24,6 +24,30 @@
         "Burger"
       ],
       "imageUrl": "/assets/images/profile_pic.png"
+    },
+    {
+      "id": "vp@123.com",
+      "name": "Vivek Patel",
+      "password": "123456",
+      "phone": "000-000-0000",
+      "profession": "User",
+      "interests": [
+        "Pizza",
+        "Burger"
+      ],
+      "imageUrl": "/assets/images/profile_pic.png"
+    },
+    {
+      "id": "test@123.com",
+      "name": "test",
+      "password": "123456",
+      "phone": "000-000-0000",
+      "profession": "User",
+      "interests": [
+        "Pizza",
+        "Burger"
+      ],
+      "imageUrl": "/assets/images/profile_pic.png"
     }
   ],
   "foods": [
@@ -133,6 +157,18 @@
       "userId": "edureka@123.com",
       "name": "Work",
       "address": "123 Broad Way Louisville KY-20345"
+    },
+    {
+      "id": 5,
+      "userId": "vp@123.com",
+      "name": "Home",
+      "address": "123 Mini St Louisville, KY-40221"
+    },
+    {
+      "id": 6,
+      "name": "Home",
+      "address": "123 Main St Louisville KY-10199",
+      "userId": "test@123.com"
     }
   ],
   "payments": [
@@ -153,6 +189,15 @@
       "cardNumber": "3847162098385647",
       "securityCode": 493,
       "expirationDate": "2022-04-05"
+    },
+    {
+      "id": 3,
+      "userId": "vp@123.com",
+      "cardType": "Debit",
+      "cardVendor": "AMEX",
+      "cardNumber": "1234576920394758",
+      "securityCode": "123",
+      "expirationDate": "2021-06-04"
     }
   ],
   "orders": [
@@ -323,6 +368,27 @@
       "remainingTime": 0,
       "userId": "edureka@123.com",
       "orderTotal": 50
+    },
+    {
+      "id": 1024,
+      "status": "Delivered",
+      "remainingTime": 0,
+      "userId": "vp@123.com",
+      "orderTotal": 900
+    },
+    {
+      "id": 1025,
+      "status": "Delivered",
+      "remainingTime": -1,
+      "userId": "vp@123.com",
+      "orderTotal": 900
+    },
+    {
+      "id": 1026,
+      "status": "Delivered",
+      "remainingTime": 0,
+      "userId": "test@123.com",
+      "orderTotal": 200
     }
   ]
 }

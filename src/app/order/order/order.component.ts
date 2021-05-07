@@ -83,10 +83,10 @@ export class OrderComponent implements OnInit {
         if(this.orders[0].remainingTime > 10){
           this.orders[0].status = 'Placed';
         }
-        if(this.orders[0].remainingTime > 1 && this.orders[0].remainingTime < 10){
+        if(this.orders[0].remainingTime > 1 && this.orders[0].remainingTime <= 10){
           this.orders[0].status = 'Picked Up';
         }
-        if(this.orders[0].remainingTime < 1){
+        if(this.orders[0].remainingTime == 0){
           this.orders[0].status = 'Delivered'
           this._orderService.addNewOrder(this.orders[0]).subscribe(res => {
             console.log("newOrder Added!");
